@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BViewController" customModule="Practice0719" customModuleProvider="target">
+            <connections>
+                <outlet property="myBTableview" destination="Dkm-am-2hT" id="yb3-9I-cbv"/>
+                <outlet property="myPickerview" destination="TYT-Uk-vCD" id="F8Q-sQ-I3B"/>
+                <outlet property="testBTN" destination="qTS-Cn-89z" id="1v1-Ln-eSa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYT-Uk-vCD">
+                    <rect key="frame" x="0.0" y="67" width="414" height="272"/>
+                </pickerView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dkm-am-2hT">
+                    <rect key="frame" x="22" y="349" width="370" height="223"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTS-Cn-89z">
+                    <rect key="frame" x="174" y="675" width="67" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="test:" destination="-1" eventType="touchUpInside" id="sUQ-Ba-ihb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Dkm-am-2hT" firstAttribute="centerX" secondItem="TYT-Uk-vCD" secondAttribute="centerX" id="5Gh-Tj-J04"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.161836" id="6gm-Lw-ELX"/>
+                <constraint firstItem="Dkm-am-2hT" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.156479" constant="95" id="Bg3-pU-Rax"/>
+                <constraint firstItem="TYT-Uk-vCD" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="BhN-34-seI"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="174" id="F1O-we-Ze4"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="top" secondItem="Dkm-am-2hT" secondAttribute="bottom" constant="103" id="GTI-2A-z74"/>
+                <constraint firstItem="Dkm-am-2hT" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.57971" constant="130" id="O3A-Qa-vaE"/>
+                <constraint firstItem="TYT-Uk-vCD" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-250" id="aAn-Yj-1zj"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0345982" id="b23-c5-ed8"/>
+                <constraint firstItem="Dkm-am-2hT" firstAttribute="top" secondItem="TYT-Uk-vCD" secondAttribute="bottom" constant="10" id="fWZ-CD-px6"/>
+                <constraint firstItem="TYT-Uk-vCD" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="oo3-tx-L8R"/>
+                <constraint firstItem="TYT-Uk-vCD" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.303571" id="wMx-PQ-5b6"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="47.544642857142854"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
