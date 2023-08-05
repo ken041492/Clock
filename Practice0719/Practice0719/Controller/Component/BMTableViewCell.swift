@@ -12,9 +12,10 @@ class BMTableViewCell: UITableViewCell {
     @IBOutlet weak var mentionSwitch: UISwitch!
     
     static let identified = "BMTableViewCell"
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        mentionSwitch.isOn = true
         // Initialization code
     }
 
@@ -25,3 +26,4 @@ class BMTableViewCell: UITableViewCell {
     }
     
 }
+

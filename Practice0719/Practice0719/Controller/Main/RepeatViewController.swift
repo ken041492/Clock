@@ -20,6 +20,7 @@ class RepeatViewController: UIViewController {
     var isSelected: [Int] = []
     var sendWeekToBDelegate: sendWeekToBDelegate?
     var reloadBView: ReloadTableViewDelegate?
+    var selectWeek: SelectWeek?
     var getBweekLabel: String = ""
     
     // MARK: - LifeCycle
@@ -45,7 +46,7 @@ class RepeatViewController: UIViewController {
         sendWeekToBDelegate?.sendWeek(weekSelect: saveWeek)
         reloadBView?.reloadtableview()
 //        print("Selected \(isSelected)")
-        
+        selectWeek?.sendSelect(select_week_number: isSelected.description)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -112,6 +113,8 @@ class RepeatViewController: UIViewController {
             saveWeek = "週末"
         } else if isSelected.count == 7 {
             saveWeek = "每天"
+        } else if isSelected.count == 0{
+            saveWeek = "從不"
         } else {
             for i in isSelected {
                 saveWeek = saveWeek + weekToLabel[i] + " "
@@ -161,3 +164,6 @@ protocol sendWeekToBDelegate {
     func sendWeek(weekSelect: String)
 }
 
+protocol SelectWeek {
+    func sendSelect(select_week_number: String)
+}

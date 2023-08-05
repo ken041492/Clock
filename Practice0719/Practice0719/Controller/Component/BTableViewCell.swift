@@ -12,9 +12,9 @@ class BTableViewCell: UITableViewCell {
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var optionlabel: UILabel!
     
-    var arrowImageView: UIImageView!
     static let identified = "BTableViewCell"
-
+    
+    var arrowImageView: UIImageView!
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()

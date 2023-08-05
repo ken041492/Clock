@@ -10,9 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BViewController" customModule="Practice0719" customModuleProvider="target">
             <connections>
+                <outlet property="DeleteBTN" destination="qTS-Cn-89z" id="xwL-tE-I7U"/>
                 <outlet property="myBTableview" destination="Dkm-am-2hT" id="yb3-9I-cbv"/>
                 <outlet property="myPickerview" destination="TYT-Uk-vCD" id="F8Q-sQ-I3B"/>
-                <outlet property="testBTN" destination="qTS-Cn-89z" id="1v1-Ln-eSa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,11 +29,13 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTS-Cn-89z">
-                    <rect key="frame" x="174" y="675" width="67" height="31"/>
+                    <rect key="frame" x="150" y="675" width="124" height="31"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" systemColor="systemRedColor"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="刪除鬧鐘"/>
                     <connections>
-                        <action selector="test:" destination="-1" eventType="touchUpInside" id="sUQ-Ba-ihb"/>
+                        <action selector="DeleteDT:" destination="-1" eventType="touchUpInside" id="tow-4e-KxP"/>
                     </connections>
                 </button>
             </subviews>
@@ -41,10 +43,10 @@
             <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Dkm-am-2hT" firstAttribute="centerX" secondItem="TYT-Uk-vCD" secondAttribute="centerX" id="5Gh-Tj-J04"/>
-                <constraint firstItem="qTS-Cn-89z" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.161836" id="6gm-Lw-ELX"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.3" id="6gm-Lw-ELX"/>
                 <constraint firstItem="Dkm-am-2hT" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.156479" constant="95" id="Bg3-pU-Rax"/>
                 <constraint firstItem="TYT-Uk-vCD" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="BhN-34-seI"/>
-                <constraint firstItem="qTS-Cn-89z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="174" id="F1O-we-Ze4"/>
+                <constraint firstItem="qTS-Cn-89z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" multiplier="0.5" constant="150" id="F1O-we-Ze4"/>
                 <constraint firstItem="qTS-Cn-89z" firstAttribute="top" secondItem="Dkm-am-2hT" secondAttribute="bottom" constant="103" id="GTI-2A-z74"/>
                 <constraint firstItem="Dkm-am-2hT" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.57971" constant="130" id="O3A-Qa-vaE"/>
                 <constraint firstItem="TYT-Uk-vCD" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" constant="-250" id="aAn-Yj-1zj"/>
@@ -62,6 +64,9 @@
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
