@@ -18,22 +18,14 @@ class MainTableViewCell: UITableViewCell {
     var arrowImageView: UIImageView!
     var isAnimated = false
     var delegate: AlarmTableViewCellDelegate?
-    
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupSubviews()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        setupSubviews()
     }
-    
-//    @IBAction func createNotification(_ sender: UISwitch) {
-//        sender.addTarget(self, action: #selector(MainViewController.changeSwitch(_:)), for: .valueChanged)
-//    }
     
     func addArrowSymbol() {
         if arrowImageView == nil {
@@ -41,7 +33,6 @@ class MainTableViewCell: UITableViewCell {
             arrowImageView?.tintColor = .black
             arrowImageView?.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(arrowImageView!)
-
             // 設置約束
             NSLayoutConstraint.activate([
                 arrowImageView!.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
@@ -90,7 +81,6 @@ class MainTableViewCell: UITableViewCell {
         }
     }
 }
-
 
 protocol AlarmTableViewCellDelegate: AnyObject {
     func switchValueChanged(isOn: Bool, in cell: UITableViewCell)

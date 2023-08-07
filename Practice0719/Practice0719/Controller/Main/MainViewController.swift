@@ -24,7 +24,6 @@ class MainViewController: UIViewController {
     var leftBarButton_edit: UIBarButtonItem?
     var leftBarButtonItem2: UIBarButtonItem?
     var reloadDelegate: ReloadTableViewDelegate?
-//    var switchToAlarm: SwitchToAlarm?
     var switchStates: [Bool] = []
     var set_period: String = ""
     var set_hours: String = ""
@@ -45,29 +44,16 @@ class MainViewController: UIViewController {
     var cell_weekNumber: [Int] = []
     var row: Int = 0
     var uuid: ObjectId!
+    var judge_index: Int!
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let realm = try! Realm()
         print("file: \(realm.configuration.fileURL!)")
-        for clock in realm.objects(Clock.self){
-            let new_clock_struct = ClockStruct(uuid: clock["uuid"] as! ObjectId, DB_Period: clock["DB_Period"] as! String,
-                                               DB_Hours: clock["DB_Hours"] as! String, DB_Minutes: clock["DB_Minutes"] as! String, CurrentTime: clock["CurrentTime"] as! String, WeekLabel: clock["WeekLabel"] as! String, MentionLabel: clock["MentionLabel"] as! String, TagText: clock["TagText"] as! String, SaveSwitch: clock["SaveSwitch"] as! Bool, SaveWeekNumber: clock["SaveWeekNumber"] as! String)
-            recieve_clock_array.append(new_clock_struct)
-        }
+        recieve_clock_array = sorted_clock()
         tableView.reloadData()
         setupUI()
-//        for row in 0..<recieve_clock_array.count {
-//            let indexPath = IndexPath(row: row, section: 0)
-//            if let cell = tableView.cellForRow(at: indexPath) as? MainTableViewCell {
-//                let isSwitchOn = cell.NoticeBell.isOn
-//                if isSwitchOn {
-//                    // 根據Switch狀態啟用相關功能
-//                    createAlarmNotification(for: row)
-//                }
-//            }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,14 +83,15 @@ class MainViewController: UIViewController {
         tableView.register(UINib(nibName: "OtherTableViewCell", bundle: nil), forCellReuseIdentifier: OtherTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+    
         setupNavigation()
         switchStates = Array(repeating: false, count: recieve_clock_array.count)
+        
     }
     
     func setupNavigation() {
-        self.title = "鬧鐘"
-        leftBarButton_edit = UIBarButtonItem(title: "編輯", style: .done, target: self, action: #selector(EditBTN))
         
+        leftBarButton_edit = UIBarButtonItem(title: "編輯", style: .done, target: self, action: #selector(EditBTN))
         rightBarButton_add = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(jumpToBViewController))
         
         leftBarButton_edit?.tintColor = UIColor.orange
@@ -112,11 +99,49 @@ class MainViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = leftBarButton_edit
         navigationItem.rightBarButtonItem = rightBarButton_add
-        
+        navigationController!.navigationBar.prefersLargeTitles = true
+        title = "鬧鐘"
+    }
+    
+    func sorted_clock() -> [ClockStruct]{
+        let realm = try! Realm()
+        let sort_result = realm.objects(Clock.self)
+            .sorted(by: { (clock1, clock2) -> Bool in
+                if let minutes1 = Int(clock1.DB_Minutes),
+                   let minutes2 = Int(clock2.DB_Minutes) {
+                    return minutes1 < minutes2
+                } else {
+                    return clock1.DB_Minutes < clock2.DB_Minutes
+                }
+            })
+            .sorted(by: { (clock1, clock2) -> Bool in
+                    if let hours1 = Int(clock1.DB_Hours),
+                       let hours2 = Int(clock2.DB_Hours) {
+                        return hours1 < hours2
+                    } else {
+                        return clock1.DB_Hours < clock2.DB_Hours
+                    }
+                })
+            .sorted(by: { (clock1, clock2) -> Bool in
+                    if let hours1 = Int(clock1.DB_Period),
+                       let hours2 = Int(clock2.DB_Period) {
+                        return hours1 < hours2
+                    } else {
+                        return clock1.DB_Period < clock2.DB_Period
+                    }
+                })
+        var register_array: [ClockStruct] = []
+
+        for i in 0..<sort_result.count{
+            register_array.append(ClockStruct(uuid: sort_result[i]["uuid"] as! ObjectId, DB_Period: sort_result[i]["DB_Period"] as! String,
+                                              DB_Hours: sort_result[i]["DB_Hours"] as! String, DB_Minutes: sort_result[i]["DB_Minutes"] as! String, CurrentTime: sort_result[i]["CurrentTime"] as! String, WeekLabel: sort_result[i]["WeekLabel"] as! String, MentionLabel: sort_result[i]["MentionLabel"] as! String, TagText: sort_result[i]["TagText"] as! String,
+                                              SaveSwitch: sort_result[i]["SaveSwitch"] as! Bool, SaveWeekNumber: sort_result[i]["SaveWeekNumber"] as! String)
+            )
+        }
+        return register_array
     }
     
     func createNoticefication() {
-        print("enter")
         
         let today = Date()
         let dateComponents = Calendar.current.dateComponents(in: TimeZone.current, from: today)
@@ -126,7 +151,6 @@ class MainViewController: UIViewController {
                 if i == weekday {
                     let content = UNMutableNotificationContent()
                     var dateComponents = DateComponents()
-//                    let uuid = recieve_clock_array[selectSwitchindex].uuid
                     if recieve_clock_array[row].DB_Period == "上午" || recieve_clock_array[row].DB_Hours == "12" {
                         dateComponents.hour = Int(recieve_clock_array[row].DB_Hours)
                     } else {
@@ -138,13 +162,9 @@ class MainViewController: UIViewController {
                     content.body = "該起床了！"
                     content.sound = .default
                     
-                    print(recieve_clock_array[row])
-                    
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                     let request = UNNotificationRequest(identifier: "\(uuid!)", content: content, trigger: trigger)
-                    
-                    print("\(dateComponents.hour!), \(dateComponents.minute!), \(uuid!)")
-                    
+           
                     UNUserNotificationCenter.current().add(request) { (error) in
                         if let error = error {
                             print("無法建立鬧鐘通知: \(error)")
@@ -153,21 +173,18 @@ class MainViewController: UIViewController {
                 }
             }
         } else {
+            judge_index = row
             let content = UNMutableNotificationContent()
             var dateComponents = DateComponents()
-//                let uuid = recieve_clock_array[selectSwitchindex].uuid
             if recieve_clock_array[row].DB_Period == "上午" || recieve_clock_array[row].DB_Hours == "12" {
                 dateComponents.hour = Int(recieve_clock_array[row].DB_Hours)
             } else {
                 dateComponents.hour = Int(recieve_clock_array[row].DB_Hours)! + 12
             }
             dateComponents.minute = Int(recieve_clock_array[row].DB_Minutes)
-
             content.title = "\(recieve_clock_array[row].DB_Period), \(dateComponents.hour!) : \(dateComponents.minute!) 鬧鐘通知"
             content.body = "該起床了！"
             content.sound = .default
-            
-            print("\(dateComponents.hour!), \(dateComponents.minute!)")
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "\(uuid!)", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request) { (error) in
@@ -176,10 +193,38 @@ class MainViewController: UIViewController {
                 }
             }
         }
-        
     }
-    
     // MARK: - IBAction
+    
+    @objc func changeSwitch(_ sender: UISwitch) {
+        
+        let switchPosition = sender.convert(CGPoint.zero, to: tableView)
+        if let indexPath = tableView.indexPathForRow(at: switchPosition), indexPath.row >= 3 {
+            row = indexPath.row - 3
+            let weeekNumber = recieve_clock_array[row].SaveWeekNumber
+            let trimmedString = weeekNumber.trimmingCharacters(in: .whitespacesAndNewlines)
+            let numberStrings = trimmedString.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").components(separatedBy: ",")
+            cell_weekNumber = numberStrings.compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
+        }
+        for i in 0..<recieve_clock_array.count{
+            if i == sender.tag {
+                uuid = recieve_clock_array[sender.tag].uuid
+                let realm = try! Realm()
+                let clock = realm.objects(Clock.self)
+                if sender.isOn == true {
+                    try! realm.write {
+                        clock[sender.tag].SaveSwitch = true
+                    }
+                    createNoticefication()
+                } else {
+                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(uuid!)"])
+                    try! realm.write {
+                        clock[sender.tag].SaveSwitch = false
+                    }
+                }
+            }
+        }
+    }
     
     @objc func jumpToBViewController() {
         
@@ -206,8 +251,6 @@ class MainViewController: UIViewController {
     }
     
     @objc func EditBTN() {
-        
-        print(clickEdit)
         let title = clickEdit ? "編輯" : "完成"
         leftBarButton_edit = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(EditBTN))
         leftBarButton_edit?.tintColor = UIColor.orange
@@ -220,7 +263,6 @@ class MainViewController: UIViewController {
                     customCell.removeArrowSymbol()
                 }
             }
-
             clickEdit = false
         } else {
             for cell in tableView.visibleCells {
@@ -232,51 +274,8 @@ class MainViewController: UIViewController {
             }
             clickEdit = true
         }
-        
         tableView.setEditing(clickEdit, animated: false)
-        
     }
-    
-    @objc func changeSwitch(_ sender: UISwitch) {
-        
-        let switchPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath = tableView.indexPathForRow(at: switchPosition), indexPath.row >= 3 {
-            row = indexPath.row - 3
-//            print("catch \(row)")
-            let weeekNumber = recieve_clock_array[row].SaveWeekNumber
-            let trimmedString = weeekNumber.trimmingCharacters(in: .whitespacesAndNewlines)
-            let numberStrings = trimmedString.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").components(separatedBy: ",")
-            cell_weekNumber = numberStrings.compactMap { Int($0.trimmingCharacters(in: .whitespaces)) }
-            print("catch \(cell_weekNumber)")
-        }
-//        print("tag is \(sender.tag)")
-        
-        
-        for i in 0..<recieve_clock_array.count{
-//            print(sender.isOn, sender.tag, i)
-            if i == sender.tag {
-                uuid = recieve_clock_array[sender.tag].uuid
-                
-                let realm = try! Realm()
-                let clock = realm.objects(Clock.self)
-                if sender.isOn == true {
-                    try! realm.write {
-                        clock[sender.tag].SaveSwitch = true
-                    }
-                    print(uuid!)
-//                    createAlarmNotification(for: <#T##Int#>)
-                    createNoticefication()
-                } else {
-                    print("cancle \(uuid!)")
-                    UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(uuid!)"])
-                    try! realm.write {
-                        clock[sender.tag].SaveSwitch = false
-                    }
-                }
-            }
-        }
-    }
-    
 }
 // MARK: - Extension
 extension MainViewController: SendMessageToADelegate {
@@ -294,11 +293,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row > 2 {
             return 80
         }
-        return 70
+        return 55
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return recieve_clock_array.count + 3
     }
 
@@ -316,19 +314,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identified, for: indexPath) as! MainTableViewCell
-            cell.delegate = self
-//            cell.NoticeBell.isOn = switchStates[indexPath.row]
             cell.Period.text = String(recieve_clock_array[indexPath.row - 3].DB_Period)
             cell.ClockTime.text = "\(recieve_clock_array[indexPath.row - 3].DB_Hours):\(recieve_clock_array[indexPath.row - 3].DB_Minutes)"
             cell.indicateWeek.text = recieve_clock_array[indexPath.row - 3].WeekLabel
             cell.NoticeBell.isOn = recieve_clock_array[indexPath.row - 3].SaveSwitch
             cell.NoticeBell.tag = indexPath.row - 3
             cell.NoticeBell.addTarget(self, action: #selector(changeSwitch(_:)), for: .valueChanged)
-            
-
             return cell
         }
-            
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -336,7 +329,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row < 3 {
             return nil
         }
-        
         let deleteAction = UIContextualAction(style: .destructive, title: "刪除") { (_, _, completionHandler) in
             let realm = try! Realm()
             if indexPath.row - 3 < self.recieve_clock_array.count {
@@ -382,7 +374,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     customCell.removeArrowSymbol()
                 }
             }
-    
             clickEdit = false
             self.present(navigationController, animated: true, completion: nil)
         }
@@ -403,59 +394,10 @@ extension MainViewController: ReloadTableViewDelegate {
         tableView.reloadData()
     }
 }
-
-extension MainViewController: AlarmTableViewCellDelegate {
-
-    func switchValueChanged(isOn: Bool, in cell: UITableViewCell) {
-        if let indexPath = tableView.indexPath(for: cell) {
-            selectSwitchindex = indexPath.row - 3
-        }
-//        recieve_clock_array[selectSwitchindex].SaveSwitch = isOn
-        
-//        if isOn {
-//            createAlarmNotification(for: selectSwitchindex)
-//        } else {
-//            deleteAlarmNotification()
-//        }
-    }
-    
-    func createAlarmNotification(for index: Int) {
-        
-        let content = UNMutableNotificationContent()
-        var dateComponents = DateComponents()
-        
-        if recieve_clock_array[selectSwitchindex].DB_Period == "上午" {
-            dateComponents.hour = Int(recieve_clock_array[index].DB_Hours)
-        } else {
-            dateComponents.hour = Int(recieve_clock_array[index].DB_Hours)! + 12
-        }
-        dateComponents.minute = Int(recieve_clock_array[index].DB_Minutes)
-
-        content.title = "\(recieve_clock_array[index].DB_Period), \(dateComponents.hour!) : \(dateComponents.minute!) 鬧鐘通知"
-        content.body = "該起床了！"
-        content.sound = .default
-        
-        print("\(dateComponents.hour!), \(dateComponents.minute!)")
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(identifier: "alarmNotification", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print("無法建立鬧鐘通知: \(error)")
-            }
-        }
-        
-    }
-
-    func deleteAlarmNotification() {
-        // 刪除鬧鐘通知的程式碼
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["alarmNotification"])
-    }
-}
 // MARK: - Protocol
 protocol ReloadTableViewDelegate {
     func reloadtableview()
 }
-
 protocol SwitchToAlarm {
     func switchtToAlarm()
 }

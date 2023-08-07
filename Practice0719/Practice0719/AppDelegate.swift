@@ -10,11 +10,7 @@ import UserNotifications
 import RealmSwift
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-//    var window: UIWindow?
-//    let test = BViewController()
-//    test.Send_uuid = self
-    
-//    var registerB: String = ""
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         UNUserNotificationCenter.current().delegate = self
@@ -39,18 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     // 接收使用者對通知的回應，例如點擊通知的動作
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
         // 在這裡可以處理使用者對通知的回應
 
-//        let identifier = response.notification.request.identifier
-//        if identifier == registerB {
-//            let realm = try! Realm()
-//            let clock = realm.objects(Clock.self).filter("uuid == %@", identifier).first
-//            try! realm.write{
-//                clock!["uuid"] = false
-//            }
-//        }
-            
         completionHandler()
     }
     // MARK: UISceneSession Lifecycle
@@ -69,9 +56,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 
 }
-
-//extension AppDelegate: Send_uuid {
-//    func senduuid(uuid: String) {
-//        registerB = uuid
-//    }
-//}

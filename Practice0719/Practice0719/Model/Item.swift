@@ -45,7 +45,6 @@ struct ClockStruct{
     var DB_Hours: String = ""
     var DB_Minutes: String = ""
     var CurrentTime: String = ""
-//    var WeekLabel: String = "鬧鐘"
     var WeekLabel: String = ""
     var MentionLabel: String = ""
     var TagText: String = ""

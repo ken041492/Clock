@@ -12,11 +12,8 @@ class MentionViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var Bell: UILabel!
     @IBOutlet weak var MentiontableView: UITableView!
-    
-    
     // MARK: - Variables
     var sendMentionToBDelegate: sendMentionToBDelegate?
-    
     let Bellnotice: [String] = ["雷達 (預設值)", "上升", "山坡", "公告", "水晶", "宇宙", "波浪", "信號", "急板", "指標"]
     var saveMention: String = ""
     var saveBMention: String = ""
@@ -24,7 +21,6 @@ class MentionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("transport \(saveBMention)")
         setupUI()
     }
     
@@ -46,14 +42,13 @@ class MentionViewController: UIViewController {
     }
     
     // MARK: - UI Settings
-    
     func setupUI() {
+        
         self.title = "提示音"
         MentiontableView.delegate = self
         MentiontableView.dataSource = self
         MentiontableView.register(UINib(nibName: "MentionTableViewCell", bundle: nil), forCellReuseIdentifier: MentionTableViewCell.identifier)
     }
-    
     // MARK: - IBAction
     
 }
@@ -72,16 +67,10 @@ extension MentionViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.accessoryView = nil
         if cell.isSelected {
-//            let checkmarkView = UIImageView(image: UIImage(systemName: "checkmark"))
             cell.accessoryView = checkmarkView
         }
         
         if saveBMention != "" {
-//            if let index = Bellnotice.firstIndex(of: saveBMention) {
-//                if indexPath.row == index {
-//                    cell.accessoryView = checkmarkView
-//                }
-//            }
             for (i, n) in Bellnotice.enumerated() {
                 if saveBMention == n.prefix(2) {
                     register_index = i
@@ -90,9 +79,7 @@ extension MentionViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == register_index {
                 cell.accessoryView = checkmarkView
             }
-            
         }
-        
         return cell
     }
     
@@ -107,7 +94,6 @@ extension MentionViewController: UITableViewDelegate, UITableViewDataSource {
         let checkmarkView = UIImageView(image: UIImage(systemName: "checkmark"))
         selectedCell?.accessoryView = checkmarkView
         saveMention = Bellnotice[indexPath.row]
-        
     }
 }
 // MARK: - Protocol

@@ -14,8 +14,6 @@ class BViewController: UIViewController {
     @IBOutlet weak var myPickerview: UIPickerView!
     @IBOutlet weak var myBTableview: UITableView!
     @IBOutlet weak var DeleteBTN: UIButton!
-    
-    
     // MARK: - Variables
     var sendMessagToADelegate: SendMessageToADelegate?
     var reloadAView: ReloadTableViewDelegate?
@@ -45,6 +43,7 @@ class BViewController: UIViewController {
     let addAlarmTitles = ["重複", "標籤", "提示聲", "稍後提醒"]
     let addAlarmDetails = ["永不", "鬧鐘", "雷達"]
     var clock_array: [ClockStruct] = []
+    var sorted_clock_array: [ClockStruct] = []
     var save_RP_MT: [String] = []
 
     let week: [String] = ["星期日", "星期一", "星期二","星期三", "星期四", "星期五", "星期六"]
@@ -86,6 +85,7 @@ class BViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        clock_array = sorted_clock()
         sendMessagToADelegate?.sendMessage(period: SelectPeriod, hours: SelectHours, minutes: SelectMinutes, clock_array: clock_array, weekLabel: AViewWeek, MentionLabel: catchMentionLabel)
         reloadAView?.reloadtableview()
     }
@@ -157,9 +157,46 @@ class BViewController: UIViewController {
         return dateFormatter.string(from: currectDate)
     }
     
+    func sorted_clock() -> [ClockStruct]{
+        let realm = try! Realm()
+        let sort_result = realm.objects(Clock.self)
+            .sorted(by: { (clock1, clock2) -> Bool in
+                if let minutes1 = Int(clock1.DB_Minutes),
+                   let minutes2 = Int(clock2.DB_Minutes) {
+                    return minutes1 < minutes2
+                } else {
+                    return clock1.DB_Minutes < clock2.DB_Minutes
+                }
+            })
+            .sorted(by: { (clock1, clock2) -> Bool in
+                    if let hours1 = Int(clock1.DB_Hours),
+                       let hours2 = Int(clock2.DB_Hours) {
+                        return hours1 < hours2
+                    } else {
+                        return clock1.DB_Hours < clock2.DB_Hours
+                    }
+                })
+            .sorted(by: { (clock1, clock2) -> Bool in
+                    if let hours1 = Int(clock1.DB_Period),
+                       let hours2 = Int(clock2.DB_Period) {
+                        return hours1 < hours2
+                    } else {
+                        return clock1.DB_Period < clock2.DB_Period
+                    }
+                })
+        
+        var register_array: [ClockStruct] = []
+        for i in 0..<sort_result.count{
+            register_array.append(ClockStruct(uuid: sort_result[i]["uuid"] as! ObjectId, DB_Period: sort_result[i]["DB_Period"] as! String,DB_Hours: sort_result[i]["DB_Hours"] as! String, DB_Minutes: sort_result[i]["DB_Minutes"] as! String, CurrentTime: sort_result[i]["CurrentTime"] as! String, WeekLabel: sort_result[i]["WeekLabel"] as! String, MentionLabel: sort_result[i]["MentionLabel"] as! String, TagText: sort_result[i]["TagText"] as! String,
+                                              SaveSwitch: sort_result[i]["SaveSwitch"] as! Bool, SaveWeekNumber: sort_result[i]["SaveWeekNumber"] as! String)
+            )
+        }
+        return register_array
+    }
     
     // MARK: - IBAction
     @IBAction func DeleteDT(_ sender: UIButton) {
+        
         let realm = try! Realm()
         let del_UUID = recieveA_clockArray[recieve_indexPath].uuid
         let delect_cell = realm.objects(Clock.self).where {
@@ -188,6 +225,7 @@ class BViewController: UIViewController {
     }
     
     @objc func add_BTN() {
+        
         let index: Int!
         let realm = try! Realm()
         let Clock_DB = realm.objects(Clock.self)
@@ -217,7 +255,6 @@ class BViewController: UIViewController {
             clock_array.append(new_clock_struct)
         }
         // 讓鬧鐘響
-
         let weeekNumber = clock_array[index].SaveWeekNumber
         uuid = clock_array[index].uuid
         let trimmedString = weeekNumber.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -274,7 +311,6 @@ class BViewController: UIViewController {
                     print("無法建立鬧鐘通知: \(error)")
                 }
             }
-            
             register = "\(uuid!)"
         }
         dismiss(animated: true)
@@ -314,8 +350,7 @@ extension BViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView,
-      didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView,didSelectRow row: Int, inComponent component: Int) {
         
         if component == 0 {
             SelectPeriod = Period[row]
@@ -420,7 +455,7 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
                     }
                 } else {
                     cell.optionlabel.text = addAlarmDetails[indexPath.row]
-                    recieve_Mention = cell.optionlabel.text!  // test
+                    recieve_Mention = cell.optionlabel.text!
                 }
             } else {
                 cell.optionlabel.text = catchWeekSelect
@@ -497,10 +532,10 @@ extension BViewController: SelectWeek {
         weekSelect = select_week_number
     }
 }
-
 // MARK: - Protocol
-
 protocol SendMessageToADelegate {
     func sendMessage(period: String, hours: String, minutes: String, clock_array: [ClockStruct], weekLabel: String, MentionLabel: String)
 }
+
+
 

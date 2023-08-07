@@ -11,8 +11,6 @@ class RepeatViewController: UIViewController {
     
     // MARK: - IBOutlet
     @IBOutlet weak var RepeatTableView: UITableView!
-    
-    
     // MARK: - Variables
     let week: [String] = ["星期日", "星期一", "星期二","星期三", "星期四", "星期五", "星期六"]
     let weekToLabel: [String] = ["週日", "週一", "週二", "週三", "週四", "週五", "週六"]
@@ -22,9 +20,7 @@ class RepeatViewController: UIViewController {
     var reloadBView: ReloadTableViewDelegate?
     var selectWeek: SelectWeek?
     var getBweekLabel: String = ""
-    
     // MARK: - LifeCycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "重複"
@@ -33,7 +29,6 @@ class RepeatViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-//        print("my week \(getBweekLabel)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +40,6 @@ class RepeatViewController: UIViewController {
         writeLabel()
         sendWeekToBDelegate?.sendWeek(weekSelect: saveWeek)
         reloadBView?.reloadtableview()
-//        print("Selected \(isSelected)")
         selectWeek?.sendSelect(select_week_number: isSelected.description)
     }
     
@@ -54,7 +48,6 @@ class RepeatViewController: UIViewController {
     }
     
     // MARK: - UI Settings
-    
     func setupUI() {
         
         RepeatTableView.delegate = self
@@ -96,7 +89,7 @@ class RepeatViewController: UIViewController {
             }
         }
     }
-    
+    // MARK: - IBAction
     func writeLabel() {
         isSelected.sort{ (num1, num2) -> Bool in
                 if num1 == 0 {
@@ -120,11 +113,7 @@ class RepeatViewController: UIViewController {
                 saveWeek = saveWeek + weekToLabel[i] + " "
             }
         }
-        
     }
-    
-    // MARK: - IBAction
-    
 }
 // MARK: - Extension
 extension RepeatViewController: UITableViewDelegate, UITableViewDataSource {
