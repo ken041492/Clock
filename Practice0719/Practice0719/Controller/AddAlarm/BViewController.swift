@@ -114,17 +114,31 @@ class BViewController: UIViewController {
             initialAmPmIndex = Period.firstIndex(of: recieveA_clockArray[recieve_indexPath].DB_Period) ?? 0
             initialHourIndex = Hours.firstIndex(of: Int(recieveA_clockArray[recieve_indexPath].DB_Hours)!) ?? 0
             initialMinuteIndex = Minutes.firstIndex(of: Int(recieveA_clockArray[recieve_indexPath].DB_Minutes)!) ?? 0
-            myPickerview.selectRow(initialAmPmIndex, inComponent: 0, animated: false)
-            myPickerview.selectRow(initialHourIndex, inComponent: 1, animated: false)
-            myPickerview.selectRow(initialMinuteIndex, inComponent: 2, animated: false)
-            editedPeriod = Period[initialAmPmIndex]
-            editedHours = String(Hours[initialHourIndex])
-            if Minutes[initialMinuteIndex] < 10 {
-                editedMinutes = "0\(Minutes[initialMinuteIndex])"
-            } else {
-                editedMinutes = "\(Minutes[initialMinuteIndex])"
+        } else {
+            let currentDate = Date()
+            let calendar = Calendar.current
+            let minute = calendar.component(.minute, from: currentDate)
+            var hour = calendar.component(.hour, from: currentDate)
+            var period: String = "上午"
+            if hour > 12 {
+                period = "下午"
+                hour = hour % 12
             }
+            initialAmPmIndex = Period.firstIndex(of: period) ?? 0
+            initialHourIndex = Hours.firstIndex(of: hour) ?? 0
+            initialMinuteIndex = Minutes.firstIndex(of: minute) ?? 0
         }
+        myPickerview.selectRow(initialAmPmIndex, inComponent: 0, animated: false)
+        myPickerview.selectRow(initialHourIndex, inComponent: 1, animated: false)
+        myPickerview.selectRow(initialMinuteIndex, inComponent: 2, animated: false)
+        editedPeriod = Period[initialAmPmIndex]
+        editedHours = String(Hours[initialHourIndex])
+        if Minutes[initialMinuteIndex] < 10 {
+            editedMinutes = "0\(Minutes[initialMinuteIndex])"
+        } else {
+            editedMinutes = "\(Minutes[initialMinuteIndex])"
+        }
+        
     }
     
     func setupBNavigation() {
