@@ -31,12 +31,8 @@
 		7DD1CCCD2A6E51F9004F6D8E /* MentionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCCB2A6E51F9004F6D8E /* MentionViewController.xib */; };
 		7DD1CCD02A6F670E004F6D8E /* BRPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1CCCE2A6F670E004F6D8E /* BRPTableViewCell.swift */; };
 		7DD1CCD12A6F670E004F6D8E /* BRPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCCF2A6F670E004F6D8E /* BRPTableViewCell.xib */; };
-		7DD1CCD42A6FB2AC004F6D8E /* AlartTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1CCD22A6FB2AC004F6D8E /* AlartTitleTableViewCell.swift */; };
-		7DD1CCD52A6FB2AC004F6D8E /* AlartTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCD32A6FB2AC004F6D8E /* AlartTitleTableViewCell.xib */; };
 		7DD1CCD82A6FB54E004F6D8E /* NosettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1CCD62A6FB54E004F6D8E /* NosettingTableViewCell.swift */; };
 		7DD1CCD92A6FB54E004F6D8E /* NosettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCD72A6FB54E004F6D8E /* NosettingTableViewCell.xib */; };
-		7DD1CCDC2A6FB720004F6D8E /* OtherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1CCDA2A6FB720004F6D8E /* OtherTableViewCell.swift */; };
-		7DD1CCDD2A6FB720004F6D8E /* OtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCDB2A6FB720004F6D8E /* OtherTableViewCell.xib */; };
 		7DD1CCE02A72454F004F6D8E /* MentionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD1CCDE2A72454F004F6D8E /* MentionTableViewCell.swift */; };
 		7DD1CCE12A72454F004F6D8E /* MentionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DD1CCDF2A72454F004F6D8E /* MentionTableViewCell.xib */; };
 		7DD4D5302A67CA09003B4D07 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4D52E2A67CA09003B4D07 /* MainTableViewCell.swift */; };
@@ -95,12 +91,8 @@
 		7DD1CCCB2A6E51F9004F6D8E /* MentionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MentionViewController.xib; sourceTree = "<group>"; };
 		7DD1CCCE2A6F670E004F6D8E /* BRPTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BRPTableViewCell.swift; sourceTree = "<group>"; };
 		7DD1CCCF2A6F670E004F6D8E /* BRPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BRPTableViewCell.xib; sourceTree = "<group>"; };
-		7DD1CCD22A6FB2AC004F6D8E /* AlartTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlartTitleTableViewCell.swift; sourceTree = "<group>"; };
-		7DD1CCD32A6FB2AC004F6D8E /* AlartTitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlartTitleTableViewCell.xib; sourceTree = "<group>"; };
 		7DD1CCD62A6FB54E004F6D8E /* NosettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NosettingTableViewCell.swift; sourceTree = "<group>"; };
 		7DD1CCD72A6FB54E004F6D8E /* NosettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NosettingTableViewCell.xib; sourceTree = "<group>"; };
-		7DD1CCDA2A6FB720004F6D8E /* OtherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTableViewCell.swift; sourceTree = "<group>"; };
-		7DD1CCDB2A6FB720004F6D8E /* OtherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherTableViewCell.xib; sourceTree = "<group>"; };
 		7DD1CCDE2A72454F004F6D8E /* MentionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentionTableViewCell.swift; sourceTree = "<group>"; };
 		7DD1CCDF2A72454F004F6D8E /* MentionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MentionTableViewCell.xib; sourceTree = "<group>"; };
 		7DD4D52E2A67CA09003B4D07 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
@@ -206,7 +198,9 @@
 		7D8F52D42A67846700BC4372 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7DD4D52D2A67C9BE003B4D07 /* Component */,
+				7DFEFA422A81DFB400F730D8 /* Mention */,
+				7DFEFA412A81DF9900F730D8 /* Repeat */,
+				7DFEFA402A81DEC700F730D8 /* AddAlarm */,
 				7D8F52D62A67908F00BC4372 /* Main */,
 			);
 			path = Controller;
@@ -222,14 +216,9 @@
 		7D8F52D62A67908F00BC4372 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7DD4D52D2A67C9BE003B4D07 /* Component */,
 				7D8F52CE2A67841E00BC4372 /* MainViewController.swift */,
 				7D8F52CF2A67841E00BC4372 /* MainViewController.xib */,
-				7D8F52D82A6790F300BC4372 /* BViewController.swift */,
-				7D8F52D92A6790F300BC4372 /* BViewController.xib */,
-				7DD1CCC62A6E5026004F6D8E /* RepeatViewController.swift */,
-				7DD1CCC72A6E5026004F6D8E /* RepeatViewController.xib */,
-				7DD1CCCA2A6E51F9004F6D8E /* MentionViewController.swift */,
-				7DD1CCCB2A6E51F9004F6D8E /* MentionViewController.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -239,20 +228,67 @@
 			children = (
 				7DD4D52E2A67CA09003B4D07 /* MainTableViewCell.swift */,
 				7DD4D52F2A67CA09003B4D07 /* MainTableViewCell.xib */,
+				7DD1CCD62A6FB54E004F6D8E /* NosettingTableViewCell.swift */,
+				7DD1CCD72A6FB54E004F6D8E /* NosettingTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7DFEFA402A81DEC700F730D8 /* AddAlarm */ = {
+			isa = PBXGroup;
+			children = (
+				7DFEFA432A81DFEC00F730D8 /* Component */,
+				7D8F52D82A6790F300BC4372 /* BViewController.swift */,
+				7D8F52D92A6790F300BC4372 /* BViewController.xib */,
+			);
+			path = AddAlarm;
+			sourceTree = "<group>";
+		};
+		7DFEFA412A81DF9900F730D8 /* Repeat */ = {
+			isa = PBXGroup;
+			children = (
+				7DFEFA442A81E06700F730D8 /* Component */,
+				7DD1CCC62A6E5026004F6D8E /* RepeatViewController.swift */,
+				7DD1CCC72A6E5026004F6D8E /* RepeatViewController.xib */,
+			);
+			path = Repeat;
+			sourceTree = "<group>";
+		};
+		7DFEFA422A81DFB400F730D8 /* Mention */ = {
+			isa = PBXGroup;
+			children = (
+				7DFEFA452A81E06D00F730D8 /* Component */,
+				7DD1CCCA2A6E51F9004F6D8E /* MentionViewController.swift */,
+				7DD1CCCB2A6E51F9004F6D8E /* MentionViewController.xib */,
+			);
+			path = Mention;
+			sourceTree = "<group>";
+		};
+		7DFEFA432A81DFEC00F730D8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
 				7DBBD7E62A6E1CFB00532A21 /* BTableViewCell.swift */,
 				7DBBD7E72A6E1CFB00532A21 /* BTableViewCell.xib */,
 				7DD1CCBE2A6E2679004F6D8E /* BMTableViewCell.swift */,
 				7DD1CCBF2A6E2679004F6D8E /* BMTableViewCell.xib */,
 				7DD1CCC22A6E4C4E004F6D8E /* BLTableViewCell.swift */,
 				7DD1CCC32A6E4C4E004F6D8E /* BLTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7DFEFA442A81E06700F730D8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
 				7DD1CCCE2A6F670E004F6D8E /* BRPTableViewCell.swift */,
 				7DD1CCCF2A6F670E004F6D8E /* BRPTableViewCell.xib */,
-				7DD1CCD22A6FB2AC004F6D8E /* AlartTitleTableViewCell.swift */,
-				7DD1CCD32A6FB2AC004F6D8E /* AlartTitleTableViewCell.xib */,
-				7DD1CCD62A6FB54E004F6D8E /* NosettingTableViewCell.swift */,
-				7DD1CCD72A6FB54E004F6D8E /* NosettingTableViewCell.xib */,
-				7DD1CCDA2A6FB720004F6D8E /* OtherTableViewCell.swift */,
-				7DD1CCDB2A6FB720004F6D8E /* OtherTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7DFEFA452A81E06D00F730D8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
 				7DD1CCDE2A72454F004F6D8E /* MentionTableViewCell.swift */,
 				7DD1CCDF2A72454F004F6D8E /* MentionTableViewCell.xib */,
 			);
@@ -396,9 +432,7 @@
 				7DBBD7E92A6E1CFB00532A21 /* BTableViewCell.xib in Resources */,
 				7D8F52D12A67841E00BC4372 /* MainViewController.xib in Resources */,
 				7DD1CCC92A6E5026004F6D8E /* RepeatViewController.xib in Resources */,
-				7DD1CCD52A6FB2AC004F6D8E /* AlartTitleTableViewCell.xib in Resources */,
 				7DD1CCE12A72454F004F6D8E /* MentionTableViewCell.xib in Resources */,
-				7DD1CCDD2A6FB720004F6D8E /* OtherTableViewCell.xib in Resources */,
 				7D8F52A82A6783AE00BC4372 /* Assets.xcassets in Resources */,
 				7DD1CCD12A6F670E004F6D8E /* BRPTableViewCell.xib in Resources */,
 				7DD1CCC52A6E4C4E004F6D8E /* BLTableViewCell.xib in Resources */,
@@ -546,9 +580,7 @@
 				7DD1CCCC2A6E51F9004F6D8E /* MentionViewController.swift in Sources */,
 				7DD4D5332A67D66A003B4D07 /* Item.swift in Sources */,
 				7DD4D5302A67CA09003B4D07 /* MainTableViewCell.swift in Sources */,
-				7DD1CCDC2A6FB720004F6D8E /* OtherTableViewCell.swift in Sources */,
 				7DBBD7E82A6E1CFB00532A21 /* BTableViewCell.swift in Sources */,
-				7DD1CCD42A6FB2AC004F6D8E /* AlartTitleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

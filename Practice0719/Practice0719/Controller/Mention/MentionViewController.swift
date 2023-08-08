@@ -48,6 +48,11 @@ class MentionViewController: UIViewController {
         MentiontableView.delegate = self
         MentiontableView.dataSource = self
         MentiontableView.register(UINib(nibName: "MentionTableViewCell", bundle: nil), forCellReuseIdentifier: MentionTableViewCell.identifier)
+        
+        MentiontableView.isScrollEnabled = false
+        MentiontableView.layer.borderWidth = 0.5
+        MentiontableView.layer.cornerRadius = 10.0
+        MentiontableView.clipsToBounds = true
     }
     // MARK: - IBAction
     
@@ -93,6 +98,7 @@ extension MentionViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let checkmarkView = UIImageView(image: UIImage(systemName: "checkmark"))
         selectedCell?.accessoryView = checkmarkView
+        selectedCell?.tintColor = UIColor.orange
         saveMention = Bellnotice[indexPath.row]
     }
 }

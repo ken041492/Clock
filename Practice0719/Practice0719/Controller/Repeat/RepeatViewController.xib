@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="btp-cR-yVB">
-                    <rect key="frame" x="20.5" y="74" width="373" height="627"/>
+                    <rect key="frame" x="20.5" y="74" width="373" height="615"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
@@ -31,7 +31,7 @@
                 <constraint firstItem="btp-cR-yVB" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="T7L-jy-QIN"/>
                 <constraint firstItem="btp-cR-yVB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="lEF-c7-mUw"/>
                 <constraint firstItem="btp-cR-yVB" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="sbf-Ri-Mep"/>
-                <constraint firstItem="btp-cR-yVB" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="t12-mk-QKZ"/>
+                <constraint firstItem="btp-cR-yVB" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" constant="-12" id="t12-mk-QKZ"/>
             </constraints>
             <point key="canvasLocation" x="132" y="43"/>
         </view>

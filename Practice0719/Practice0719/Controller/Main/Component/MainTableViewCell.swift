@@ -17,7 +17,6 @@ class MainTableViewCell: UITableViewCell {
     
     var arrowImageView: UIImageView!
     var isAnimated = false
-    var delegate: AlarmTableViewCellDelegate?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -59,6 +58,7 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func animateRightCell() {
+        
         UIView.animate(withDuration: 0.2, animations: {
             // 在這裡設置您想要的動畫效果
             // 例如，將cell的內容向右偏移一段距離
@@ -66,10 +66,13 @@ class MainTableViewCell: UITableViewCell {
         }) { (_) in
             // 動畫完成後的處理
             // 這裡可以加入一些額外的動作或邏輯
+            self.NoticeBell.isHidden = true
+            self.addArrowSymbol()
         }
     }
     
     func animateLeftCell() {
+        
         UIView.animate(withDuration: 0.2, animations: {
             // 在這裡設置您想要的動畫效果
             // 例如，將cell的內容向右偏移一段距離
@@ -78,10 +81,9 @@ class MainTableViewCell: UITableViewCell {
         }) { (_) in
             // 動畫完成後的處理
             // 這裡可以加入一些額外的動作或邏輯
+            self.NoticeBell.isHidden = false
+            self.removeArrowSymbol()
         }
     }
 }
 
-protocol AlarmTableViewCellDelegate: AnyObject {
-    func switchValueChanged(isOn: Bool, in cell: UITableViewCell)
-}

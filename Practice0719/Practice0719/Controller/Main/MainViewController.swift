@@ -13,9 +13,6 @@ import UserNotifications
 class MainViewController: UIViewController {
     
     // MARK: - IBOutlet
-//    @IBOutlet weak var Label: UILabel!
-//    @IBOutlet weak var TextField: UITextField!
-
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
@@ -78,15 +75,11 @@ class MainViewController: UIViewController {
     func setupUI() {
         
         tableView.register(UINib(nibName: "MainTableViewCell", bundle: nil), forCellReuseIdentifier: MainTableViewCell.identified)
-        tableView.register(UINib(nibName: "AlartTitleTableViewCell", bundle: nil), forCellReuseIdentifier: AlartTitleTableViewCell.identifier)
         tableView.register(UINib(nibName: "NosettingTableViewCell", bundle: nil), forCellReuseIdentifier: NosettingTableViewCell.identifier)
-        tableView.register(UINib(nibName: "OtherTableViewCell", bundle: nil), forCellReuseIdentifier: OtherTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
-    
         setupNavigation()
         switchStates = Array(repeating: false, count: recieve_clock_array.count)
-        
     }
     
     func setupNavigation() {
@@ -199,8 +192,8 @@ class MainViewController: UIViewController {
     @objc func changeSwitch(_ sender: UISwitch) {
         
         let switchPosition = sender.convert(CGPoint.zero, to: tableView)
-        if let indexPath = tableView.indexPathForRow(at: switchPosition), indexPath.row >= 3 {
-            row = indexPath.row - 3
+        if let indexPath = tableView.indexPathForRow(at: switchPosition), (indexPath.row != 0) {
+            row = indexPath.row
             let weeekNumber = recieve_clock_array[row].SaveWeekNumber
             let trimmedString = weeekNumber.trimmingCharacters(in: .whitespacesAndNewlines)
             let numberStrings = trimmedString.replacingOccurrences(of: "[", with: "").replacingOccurrences(of: "]", with: "").components(separatedBy: ",")
@@ -255,10 +248,11 @@ class MainViewController: UIViewController {
         leftBarButton_edit = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(EditBTN))
         leftBarButton_edit?.tintColor = UIColor.orange
         navigationItem.leftBarButtonItem = leftBarButton_edit
+        tableView.allowsSelectionDuringEditing = true
         if clickEdit {
             for cell in tableView.visibleCells {
                 if let customCell = cell as? MainTableViewCell {
-                    customCell.animateLeftCell()
+//                    customCell.animateLeftCell()
                     customCell.NoticeBell.isHidden = false
                     customCell.removeArrowSymbol()
                 }
@@ -267,13 +261,14 @@ class MainViewController: UIViewController {
         } else {
             for cell in tableView.visibleCells {
                 if let customCell = cell as? MainTableViewCell {
-                    customCell.animateRightCell()
+//                    customCell.animateRightCell()
                     customCell.NoticeBell.isHidden = true
                     customCell.addArrowSymbol()
                 }
             }
             clickEdit = true
         }
+        tableView.allowsSelectionDuringEditing = true
         tableView.setEditing(clickEdit, animated: false)
     }
 }
@@ -290,49 +285,68 @@ extension MainViewController: SendMessageToADelegate {
 }
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row > 2 {
+        if indexPath.section == 1 {
             return 80
         }
         return 55
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recieve_clock_array.count + 3
-    }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+            case 0:
+                // 第一個Header下顯示一個Cell即可
+                return 1
+            case 1:
+                return recieve_clock_array.count
+            default:
+                // 其餘不顯示任何Cell
+                return 0
+            }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        switch indexPath.row {
+
+        switch indexPath.section{
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AlartTitleTableViewCell.identifier, for: indexPath) as! AlartTitleTableViewCell
-            return cell
-        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: NosettingTableViewCell.identifier, for: indexPath) as! NosettingTableViewCell
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: OtherTableViewCell.identifier, for: indexPath) as! OtherTableViewCell
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identified, for: indexPath) as! MainTableViewCell
-            cell.Period.text = String(recieve_clock_array[indexPath.row - 3].DB_Period)
-            cell.ClockTime.text = "\(recieve_clock_array[indexPath.row - 3].DB_Hours):\(recieve_clock_array[indexPath.row - 3].DB_Minutes)"
-            cell.indicateWeek.text = recieve_clock_array[indexPath.row - 3].WeekLabel
-            cell.NoticeBell.isOn = recieve_clock_array[indexPath.row - 3].SaveSwitch
-            cell.NoticeBell.tag = indexPath.row - 3
+            cell.Period.text = String(recieve_clock_array[indexPath.row].DB_Period)
+            cell.ClockTime.text = "\(recieve_clock_array[indexPath.row].DB_Hours):\(recieve_clock_array[indexPath.row].DB_Minutes)"
+            cell.indicateWeek.text = recieve_clock_array[indexPath.row].WeekLabel
+            cell.NoticeBell.isOn = recieve_clock_array[indexPath.row].SaveSwitch
+            cell.NoticeBell.tag = indexPath.row
             cell.NoticeBell.addTarget(self, action: #selector(changeSwitch(_:)), for: .valueChanged)
             return cell
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch section {
+        case 0:
+            return "🛏睡眠｜起床鬧鐘"
+        case 1:
+            return "其他"
+        default:
+            return ""
+        }
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        if indexPath.row < 3 {
+        if indexPath.section == 0 {
             return nil
         }
         let deleteAction = UIContextualAction(style: .destructive, title: "刪除") { (_, _, completionHandler) in
             let realm = try! Realm()
-            if indexPath.row - 3 < self.recieve_clock_array.count {
-                self.deleteArr_cell = self.recieve_clock_array[indexPath.row - 3]
+            if indexPath.row < self.recieve_clock_array.count {
+                self.deleteArr_cell = self.recieve_clock_array[indexPath.row]
                 let del_uuid = self.deleteArr_cell?.uuid
                 let delect_cell = realm.objects(Clock.self).where {
                     $0.uuid == del_uuid!
@@ -342,7 +356,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     realm.delete(delect_cell)
                 }
                 
-                self.recieve_clock_array.remove(at: indexPath.row - 3)
+                self.recieve_clock_array.remove(at: indexPath.row)
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)
             completionHandler(true) // 告訴系統滑動操作已完成
@@ -352,13 +366,23 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return swipeConfiguration
     }
     
+//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        if tableView.isEditing {
+//            // 在編輯模式下，手動處理點擊事件
+//            return indexPath
+//        } else {
+//            // 在非編輯模式下，保持默認行為
+//            return indexPath
+//        }
+//    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row > 2 {
+        if indexPath.section == 1 || tableView.isEditing{
             let nextVC = BViewController()
             nextVC.sendMessagToADelegate = self
             nextVC.reloadAView = self
             NowEditting = true
-            EditIndexPath = indexPath.row - 3
+            EditIndexPath = indexPath.row
             nextVC.recieve_Tag = recieve_clock_array[EditIndexPath].TagText
             nextVC.recieve_IsEdit = NowEditting
             nextVC.recieve_indexPath = EditIndexPath
@@ -369,18 +393,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 
             for cell in tableView.visibleCells {
                 if let customCell = cell as? MainTableViewCell {
-                    customCell.animateLeftCell()
                     customCell.NoticeBell.isHidden = false
                     customCell.removeArrowSymbol()
                 }
             }
             clickEdit = false
+            tableView.setEditing(clickEdit, animated: false)
+            leftBarButton_edit = UIBarButtonItem(title: "編輯", style: .done, target: self, action: #selector(EditBTN))
+            leftBarButton_edit?.tintColor = UIColor.orange
+            navigationItem.leftBarButtonItem = leftBarButton_edit
             self.present(navigationController, animated: true, completion: nil)
         }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.row < 3 {
+        if indexPath.section == 0 {
             return false
         } else {
             return true

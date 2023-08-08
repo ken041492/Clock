@@ -40,6 +40,7 @@ class RepeatViewController: UIViewController {
         writeLabel()
         sendWeekToBDelegate?.sendWeek(weekSelect: saveWeek)
         reloadBView?.reloadtableview()
+//        print("catch array \(isSelected)")
         selectWeek?.sendSelect(select_week_number: isSelected.description)
     }
     
@@ -53,6 +54,10 @@ class RepeatViewController: UIViewController {
         RepeatTableView.delegate = self
         RepeatTableView.dataSource = self
         RepeatTableView.register(UINib(nibName: "BRPTableViewCell", bundle: nil), forCellReuseIdentifier: BRPTableViewCell.identifier)
+        RepeatTableView.layer.borderWidth = 0.5
+        RepeatTableView.layer.cornerRadius = 10.0
+        RepeatTableView.clipsToBounds = true
+        RepeatTableView.isScrollEnabled = false
         
         if getBweekLabel != "" {
             let getBWeekArray: [String] = getBweekLabel.components(separatedBy: " ").filter { !$0.isEmpty }

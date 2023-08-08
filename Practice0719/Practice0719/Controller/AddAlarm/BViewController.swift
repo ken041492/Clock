@@ -107,7 +107,8 @@ class BViewController: UIViewController {
         
         myBTableview.delegate = self
         myBTableview.dataSource = self
-        myBTableview.isScrollEnabled = false
+        myBTableview.isScrollEnabled = false        
+        
         
         if recieve_IsEdit && PickerViewSelected == false {
             initialAmPmIndex = Period.firstIndex(of: recieveA_clockArray[recieve_indexPath].DB_Period) ?? 0
@@ -231,11 +232,18 @@ class BViewController: UIViewController {
         let Clock_DB = realm.objects(Clock.self)
         if recieve_IsEdit {
             try! realm.write {
+                
                 Clock_DB[recieve_indexPath].DB_Period = editedPeriod
                 Clock_DB[recieve_indexPath].DB_Hours = editedHours
                 Clock_DB[recieve_indexPath].DB_Minutes = editedMinutes
                 Clock_DB[recieve_indexPath].TagText = SaveTextfield
-                Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText + "," + AViewWeek
+//                Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText + "," + AViewWeek
+//                print("catch count = \(AViewWeek.count)")
+                if AViewWeek == "" || AViewWeek == " " {
+                    Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText
+                } else {
+                    Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText + "," + AViewWeek
+                }
                 Clock_DB[recieve_indexPath].MentionLabel = recieve_Mention
                 Clock_DB[recieve_indexPath].SaveSwitch = recieve_switch
                 Clock_DB[recieve_indexPath].SaveWeekNumber = weekSelect
@@ -244,7 +252,13 @@ class BViewController: UIViewController {
             recieve_IsEdit = false
         } else {
             try! realm.write {
-                realm.add(Clock(DB_Period: editedPeriod, DB_Hours: editedHours, DB_Minutes: editedMinutes, CurrentTime: getSystemTime(), WeekLabel: "\(SaveTextfield), \(AViewWeek)", MentionLabel: recieve_Mention, TagText: SaveTextfield, SaveSwitch: recieve_switch, SaveWeekNumber: weekSelect))
+                var registerText: String = ""
+                if AViewWeek == "" || AViewWeek == " " {
+                    registerText = "\(SaveTextfield)"
+                } else {
+                    registerText = "\(SaveTextfield), \(AViewWeek)"
+                }
+                realm.add(Clock(DB_Period: editedPeriod, DB_Hours: editedHours, DB_Minutes: editedMinutes, CurrentTime: getSystemTime(), WeekLabel: registerText, MentionLabel: recieve_Mention, TagText: SaveTextfield, SaveSwitch: recieve_switch, SaveWeekNumber: weekSelect))
             }
             index = Clock_DB.count - 1
         }
@@ -413,7 +427,6 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
             } else {
                 SaveTextfield = cell.WeekTextField.text!
             }
-            
             if cell.WeekTextField.text == "" {
                 cell.WeekTextField.text = "鬧鐘"
                 SaveTextfield = cell.WeekTextField.text!
@@ -431,7 +444,11 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
             cell.titlelabel.text = addAlarmTitles[indexPath.row]
             if catchWeekSelect == "" {
                 if recieve_IsEdit {
-                    let saveWeek = recieveA_clockArray[recieve_indexPath].WeekLabel.components(separatedBy: ",")[1]
+                    var saveWeek: String = ""
+//                    print(recieveA_clockArray[recieve_indexPath])
+                    if recieveA_clockArray[recieve_indexPath].WeekLabel != recieveA_clockArray[recieve_indexPath].TagText{
+                        saveWeek = recieveA_clockArray[recieve_indexPath].WeekLabel.components(separatedBy: ",")[1]
+                    }
                     let savemention = recieveA_clockArray[recieve_indexPath].MentionLabel
                     if saveWeek == " " || saveWeek == ""  {
                         if indexPath.row == 0 {
@@ -442,7 +459,8 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
                             cell.optionlabel.text = saveWeek
                             AViewWeek = cell.optionlabel.text!
                         } else {
-                            cell.optionlabel.text = addAlarmDetails[indexPath.row]
+//                            cell.optionlabel.text = addAlarmDetails[indexPath.row]
+                            cell.optionlabel.text = saveWeek
                         }
                     }
                     if indexPath.row == 2 {
@@ -478,10 +496,9 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
                     recieve_Mention = cell.optionlabel.text!
                 }
             }
-            
-            if recieve_IsEdit {
-                weekSelect = recieveA_clockArray[recieve_indexPath].SaveWeekNumber
-            }
+//            if recieve_IsEdit {
+//                weekSelect = recieveA_clockArray[recieve_indexPath].SaveWeekNumber
+//            }
             return cell
         }
     }
