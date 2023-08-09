@@ -13,7 +13,10 @@ class BLTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     let userDefaults = UserDefaults.standard
     static let identified = "BLTableViewCell"
+    var register: String = ""
     
+    @IBAction func input(_ sender: UITextField) {
+    }
     
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -28,18 +31,28 @@ class BLTableViewCell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         WeekTextField.delegate = self
         WeekTextField.clearButtonMode = .whileEditing
+//        WeekTextField.addTarget(self, action: #selector(BLTableViewCell.textFieldDidChange(_:)), for: .editingChanged)
 //        WeekTextField.text = "鬧鐘"
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
+//    @objc func textFieldDidChange(_ textField: UITextField) {
+//        if let newText = textField.text {
+//            print("\(newText)")
+//            register = newText
+//        }
+//        BViewController().test = register
+//    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 在这里可以监听文本变化，进行相关处理
+
         return true
     }
 }

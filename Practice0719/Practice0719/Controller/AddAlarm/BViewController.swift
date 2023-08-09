@@ -25,7 +25,7 @@ class BViewController: UIViewController {
     let Period: [String] = ["上午", "下午"]
     let Hours = [Int](1...12)
     let Minutes = [Int](0...59)
-    
+    var EditingText: String = ""
     var SelectPeriod: String = "上午"
     var SelectHours: String = "1"
     var SelectMinutes: String = "00"
@@ -250,9 +250,10 @@ class BViewController: UIViewController {
                 Clock_DB[recieve_indexPath].DB_Period = editedPeriod
                 Clock_DB[recieve_indexPath].DB_Hours = editedHours
                 Clock_DB[recieve_indexPath].DB_Minutes = editedMinutes
-                Clock_DB[recieve_indexPath].TagText = SaveTextfield
-//                Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText + "," + AViewWeek
-//                print("catch count = \(AViewWeek.count)")
+                if EditingText == "" {
+                    EditingText = "鬧鐘"
+                }
+                Clock_DB[recieve_indexPath].TagText = EditingText
                 if AViewWeek == "" || AViewWeek == " " {
                     Clock_DB[recieve_indexPath].WeekLabel = Clock_DB[recieve_indexPath].TagText
                 } else {
@@ -267,12 +268,15 @@ class BViewController: UIViewController {
         } else {
             try! realm.write {
                 var registerText: String = ""
-                if AViewWeek == "" || AViewWeek == " " {
-                    registerText = "\(SaveTextfield)"
-                } else {
-                    registerText = "\(SaveTextfield), \(AViewWeek)"
+                if EditingText == "" {
+                    EditingText = "鬧鐘"
                 }
-                realm.add(Clock(DB_Period: editedPeriod, DB_Hours: editedHours, DB_Minutes: editedMinutes, CurrentTime: getSystemTime(), WeekLabel: registerText, MentionLabel: recieve_Mention, TagText: SaveTextfield, SaveSwitch: recieve_switch, SaveWeekNumber: weekSelect))
+                if AViewWeek == "" || AViewWeek == " " {
+                    registerText = "\(EditingText)"
+                } else {
+                    registerText = "\(EditingText), \(AViewWeek)"
+                }
+                realm.add(Clock(DB_Period: editedPeriod, DB_Hours: editedHours, DB_Minutes: editedMinutes, CurrentTime: getSystemTime(), WeekLabel: registerText, MentionLabel: recieve_Mention, TagText: EditingText, SaveSwitch: recieve_switch, SaveWeekNumber: weekSelect))
             }
             index = Clock_DB.count - 1
         }
@@ -343,6 +347,15 @@ class BViewController: UIViewController {
         }
         dismiss(animated: true)
     }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let newText = textField.text {
+            let reg = newText
+            EditingText = reg
+        }
+        
+    }
+    
 }
 // MARK: - Extension
 
@@ -427,23 +440,9 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
             let cell = myBTableview.dequeueReusableCell(withIdentifier: BLTableViewCell.identified, for: indexPath) as! BLTableViewCell
             cell.WeekTextField.delegate = self
             cell.Label.text = addAlarmTitles[indexPath.row]
-            SaveTextfield = cell.WeekTextField.text!
-            if SaveTextfield != ""{
-                SaveTextfield = cell.WeekTextField.text!
-            } else {
-                cell.WeekTextField.text = addAlarmDetails[indexPath.row]
-            }
+            cell.WeekTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             if recieve_IsEdit {
                 cell.WeekTextField.text = recieve_Tag
-            }
-            if SaveTextfield != "" {
-                cell.WeekTextField.text = SaveTextfield
-            } else {
-                SaveTextfield = cell.WeekTextField.text!
-            }
-            if cell.WeekTextField.text == "" {
-                cell.WeekTextField.text = "鬧鐘"
-                SaveTextfield = cell.WeekTextField.text!
             }
             return cell
         default:
@@ -510,9 +509,6 @@ extension BViewController: UITableViewDelegate, UITableViewDataSource, UITextFie
                     recieve_Mention = cell.optionlabel.text!
                 }
             }
-//            if recieve_IsEdit {
-//                weekSelect = recieveA_clockArray[recieve_indexPath].SaveWeekNumber
-//            }
             return cell
         }
     }
