@@ -15,13 +15,11 @@ class Clock: Object {
     @Persisted var DB_Hours: String = ""
     @Persisted var DB_Minutes: String = ""
     @Persisted var CurrentTime: String = ""
-//    @Persisted var WeekLabel: String = "鬧鐘"
     @Persisted var WeekLabel: String = ""
     @Persisted var MentionLabel: String = ""
     @Persisted var TagText: String = ""
     @Persisted var SaveSwitch: Bool = true
     @Persisted var SaveWeekNumber: String = ""
-    
     override static func primaryKey() -> String?{
         return "uuid"
     }

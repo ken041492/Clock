@@ -40,7 +40,6 @@ class RepeatViewController: UIViewController {
         writeLabel()
         sendWeekToBDelegate?.sendWeek(weekSelect: saveWeek)
         reloadBView?.reloadtableview()
-//        print("catch array \(isSelected)")
         selectWeek?.sendSelect(select_week_number: isSelected.description)
     }
     
@@ -97,13 +96,13 @@ class RepeatViewController: UIViewController {
     // MARK: - IBAction
     func writeLabel() {
         isSelected.sort{ (num1, num2) -> Bool in
-                if num1 == 0 {
-                    return false
-                } else if num2 == 0 {
-                    return true
-                } else {
-                    return num1 < num2
-                }
+            if num1 == 0 {
+                return false
+            } else if num2 == 0 {
+                return true
+            } else {
+                return num1 < num2
+            }
         }
         if isSelected == [1,2,3,4,5]{
             saveWeek = "每個平日"
@@ -144,6 +143,7 @@ extension RepeatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if isSelected.contains(indexPath.row) {
             isSelected = isSelected.filter{$0 != indexPath.row}
         } else {
@@ -151,7 +151,6 @@ extension RepeatViewController: UITableViewDelegate, UITableViewDataSource {
         }
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-    
 }
 // MARK: - Protocol
 protocol sendWeekToBDelegate {

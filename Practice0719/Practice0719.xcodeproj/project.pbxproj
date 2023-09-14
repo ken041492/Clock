@@ -8,6 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		446B94BC0CBF27E569B4463B /* Pods_Practice0719Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E8637FD3B062145521B1A7 /* Pods_Practice0719Tests.framework */; };
+		7D125B6C2AA21BD200066D3E /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B6A2AA21BD100066D3E /* TimerTableViewCell.swift */; };
+		7D125B6D2AA21BD200066D3E /* TimerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B6B2AA21BD100066D3E /* TimerTableViewCell.xib */; };
+		7D125B702AA2215A00066D3E /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B6E2AA2215A00066D3E /* NoticeViewController.swift */; };
+		7D125B712AA2215A00066D3E /* NoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B6F2AA2215A00066D3E /* NoticeViewController.xib */; };
+		7D125B742AA2220600066D3E /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B722AA2220600066D3E /* NoticeTableViewCell.swift */; };
+		7D125B752AA2220600066D3E /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B732AA2220600066D3E /* NoticeTableViewCell.xib */; };
+		7D125B7C2AA4BAD000066D3E /* StopWatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B7A2AA4BAD000066D3E /* StopWatchCell.swift */; };
+		7D125B7D2AA4BAD000066D3E /* StopWatchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B7B2AA4BAD000066D3E /* StopWatchCell.xib */; };
+		7D125B812AA5BA7900066D3E /* WorldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B7F2AA5BA7900066D3E /* WorldTableViewCell.swift */; };
+		7D125B822AA5BA7900066D3E /* WorldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B802AA5BA7900066D3E /* WorldTableViewCell.xib */; };
+		7D125B852AA5BBEB00066D3E /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B832AA5BBEB00066D3E /* ChooseCityViewController.swift */; };
+		7D125B862AA5BBEB00066D3E /* ChooseCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B842AA5BBEB00066D3E /* ChooseCityViewController.xib */; };
+		7D125B882AA5C44A00066D3E /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B872AA5C44A00066D3E /* CustomNavigationBar.swift */; };
+		7D125B8B2AA5FF4300066D3E /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D125B892AA5FF4300066D3E /* CityTableViewCell.swift */; };
+		7D125B8C2AA5FF4300066D3E /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D125B8A2AA5FF4300066D3E /* CityTableViewCell.xib */; };
+		7D6AEEDF2A9C93C2008BDEA4 /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEEDD2A9C93C2008BDEA4 /* WorldClockViewController.swift */; };
+		7D6AEEE02A9C93C2008BDEA4 /* WorldClockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6AEEDE2A9C93C2008BDEA4 /* WorldClockViewController.xib */; };
+		7D6AEEF22A9D8DFB008BDEA4 /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEEF02A9D8DFB008BDEA4 /* StopWatchViewController.swift */; };
+		7D6AEEF32A9D8DFB008BDEA4 /* StopWatchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6AEEF12A9D8DFB008BDEA4 /* StopWatchViewController.xib */; };
+		7D6AEEF72A9D8E0D008BDEA4 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEEF52A9D8E0D008BDEA4 /* TimerViewController.swift */; };
+		7D6AEEF82A9D8E0D008BDEA4 /* TimerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6AEEF62A9D8E0D008BDEA4 /* TimerViewController.xib */; };
+		7D6AEEFA2A9D91D2008BDEA4 /* TabBarTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEEF92A9D91D2008BDEA4 /* TabBarTest.swift */; };
+		7D6AEF012A9DDE4D008BDEA4 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6AEEFF2A9DDE4D008BDEA4 /* TabbarViewController.swift */; };
+		7D6AEF022A9DDE4D008BDEA4 /* TabbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D6AEF002A9DDE4D008BDEA4 /* TabbarViewController.xib */; };
 		7D8F529F2A6783AC00BC4372 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F529E2A6783AC00BC4372 /* AppDelegate.swift */; };
 		7D8F52A12A6783AC00BC4372 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8F52A02A6783AC00BC4372 /* SceneDelegate.swift */; };
 		7D8F52A82A6783AE00BC4372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D8F52A72A6783AE00BC4372 /* Assets.xcassets */; };
@@ -64,6 +88,30 @@
 		3B639D4EF4F5E39EB3FD9195 /* Pods-Practice0719.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Practice0719.release.xcconfig"; path = "Target Support Files/Pods-Practice0719/Pods-Practice0719.release.xcconfig"; sourceTree = "<group>"; };
 		4D0F3D4D22B815186C7178C3 /* Pods_Practice0719_Practice0719UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Practice0719_Practice0719UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		656DD3DA7B0AD03CCAE454EE /* Pods-Practice0719Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Practice0719Tests.release.xcconfig"; path = "Target Support Files/Pods-Practice0719Tests/Pods-Practice0719Tests.release.xcconfig"; sourceTree = "<group>"; };
+		7D125B6A2AA21BD100066D3E /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
+		7D125B6B2AA21BD100066D3E /* TimerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerTableViewCell.xib; sourceTree = "<group>"; };
+		7D125B6E2AA2215A00066D3E /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		7D125B6F2AA2215A00066D3E /* NoticeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeViewController.xib; sourceTree = "<group>"; };
+		7D125B722AA2220600066D3E /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		7D125B732AA2220600066D3E /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
+		7D125B7A2AA4BAD000066D3E /* StopWatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchCell.swift; sourceTree = "<group>"; };
+		7D125B7B2AA4BAD000066D3E /* StopWatchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopWatchCell.xib; sourceTree = "<group>"; };
+		7D125B7F2AA5BA7900066D3E /* WorldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTableViewCell.swift; sourceTree = "<group>"; };
+		7D125B802AA5BA7900066D3E /* WorldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldTableViewCell.xib; sourceTree = "<group>"; };
+		7D125B832AA5BBEB00066D3E /* ChooseCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
+		7D125B842AA5BBEB00066D3E /* ChooseCityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCityViewController.xib; sourceTree = "<group>"; };
+		7D125B872AA5C44A00066D3E /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		7D125B892AA5FF4300066D3E /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		7D125B8A2AA5FF4300066D3E /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		7D6AEEDD2A9C93C2008BDEA4 /* WorldClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
+		7D6AEEDE2A9C93C2008BDEA4 /* WorldClockViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldClockViewController.xib; sourceTree = "<group>"; };
+		7D6AEEF02A9D8DFB008BDEA4 /* StopWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
+		7D6AEEF12A9D8DFB008BDEA4 /* StopWatchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopWatchViewController.xib; sourceTree = "<group>"; };
+		7D6AEEF52A9D8E0D008BDEA4 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		7D6AEEF62A9D8E0D008BDEA4 /* TimerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerViewController.xib; sourceTree = "<group>"; };
+		7D6AEEF92A9D91D2008BDEA4 /* TabBarTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarTest.swift; sourceTree = "<group>"; };
+		7D6AEEFF2A9DDE4D008BDEA4 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		7D6AEF002A9DDE4D008BDEA4 /* TabbarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabbarViewController.xib; sourceTree = "<group>"; };
 		7D8F529B2A6783AC00BC4372 /* Practice0719.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practice0719.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8F529E2A6783AC00BC4372 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D8F52A02A6783AC00BC4372 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +181,87 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D125B692AA21BB600066D3E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B6A2AA21BD100066D3E /* TimerTableViewCell.swift */,
+				7D125B6B2AA21BD100066D3E /* TimerTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7D125B762AA2226800066D3E /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B772AA2228700066D3E /* Component */,
+				7D125B6E2AA2215A00066D3E /* NoticeViewController.swift */,
+				7D125B6F2AA2215A00066D3E /* NoticeViewController.xib */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		7D125B772AA2228700066D3E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B722AA2220600066D3E /* NoticeTableViewCell.swift */,
+				7D125B732AA2220600066D3E /* NoticeTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7D125B792AA4BAB200066D3E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B7A2AA4BAD000066D3E /* StopWatchCell.swift */,
+				7D125B7B2AA4BAD000066D3E /* StopWatchCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7D125B7E2AA5BA1400066D3E /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B7F2AA5BA7900066D3E /* WorldTableViewCell.swift */,
+				7D125B802AA5BA7900066D3E /* WorldTableViewCell.xib */,
+				7D125B892AA5FF4300066D3E /* CityTableViewCell.swift */,
+				7D125B8A2AA5FF4300066D3E /* CityTableViewCell.xib */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7D6AEED72A9C9251008BDEA4 /* WorldClock */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B7E2AA5BA1400066D3E /* Component */,
+				7D6AEEDD2A9C93C2008BDEA4 /* WorldClockViewController.swift */,
+				7D6AEEDE2A9C93C2008BDEA4 /* WorldClockViewController.xib */,
+				7D125B832AA5BBEB00066D3E /* ChooseCityViewController.swift */,
+				7D125B842AA5BBEB00066D3E /* ChooseCityViewController.xib */,
+			);
+			path = WorldClock;
+			sourceTree = "<group>";
+		};
+		7D6AEEEE2A9D8DD9008BDEA4 /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B792AA4BAB200066D3E /* Component */,
+				7D6AEEF02A9D8DFB008BDEA4 /* StopWatchViewController.swift */,
+				7D6AEEF12A9D8DFB008BDEA4 /* StopWatchViewController.xib */,
+			);
+			path = StopWatch;
+			sourceTree = "<group>";
+		};
+		7D6AEEEF2A9D8DE2008BDEA4 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				7D125B762AA2226800066D3E /* Notice */,
+				7D125B692AA21BB600066D3E /* Component */,
+				7D6AEEF52A9D8E0D008BDEA4 /* TimerViewController.swift */,
+				7D6AEEF62A9D8E0D008BDEA4 /* TimerViewController.xib */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		7D8F52922A6783AC00BC4372 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +327,9 @@
 		7D8F52D42A67846700BC4372 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7D6AEEEF2A9D8DE2008BDEA4 /* Timer */,
+				7D6AEEEE2A9D8DD9008BDEA4 /* StopWatch */,
+				7D6AEED72A9C9251008BDEA4 /* WorldClock */,
 				7DFEFA422A81DFB400F730D8 /* Mention */,
 				7DFEFA412A81DF9900F730D8 /* Repeat */,
 				7DFEFA402A81DEC700F730D8 /* AddAlarm */,
@@ -209,6 +341,10 @@
 		7D8F52D52A6784BD00BC4372 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D6AEEFF2A9DDE4D008BDEA4 /* TabbarViewController.swift */,
+				7D6AEF002A9DDE4D008BDEA4 /* TabbarViewController.xib */,
+				7D6AEEF92A9D91D2008BDEA4 /* TabBarTest.swift */,
+				7D125B872AA5C44A00066D3E /* CustomNavigationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,17 +563,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D125B7D2AA4BAD000066D3E /* StopWatchCell.xib in Resources */,
 				7D8F52AB2A6783AE00BC4372 /* LaunchScreen.storyboard in Resources */,
 				7D8F52DB2A6790F300BC4372 /* BViewController.xib in Resources */,
 				7DBBD7E92A6E1CFB00532A21 /* BTableViewCell.xib in Resources */,
+				7D125B862AA5BBEB00066D3E /* ChooseCityViewController.xib in Resources */,
 				7D8F52D12A67841E00BC4372 /* MainViewController.xib in Resources */,
+				7D6AEF022A9DDE4D008BDEA4 /* TabbarViewController.xib in Resources */,
 				7DD1CCC92A6E5026004F6D8E /* RepeatViewController.xib in Resources */,
+				7D6AEEF32A9D8DFB008BDEA4 /* StopWatchViewController.xib in Resources */,
+				7D125B6D2AA21BD200066D3E /* TimerTableViewCell.xib in Resources */,
+				7D125B8C2AA5FF4300066D3E /* CityTableViewCell.xib in Resources */,
 				7DD1CCE12A72454F004F6D8E /* MentionTableViewCell.xib in Resources */,
+				7D6AEEF82A9D8E0D008BDEA4 /* TimerViewController.xib in Resources */,
 				7D8F52A82A6783AE00BC4372 /* Assets.xcassets in Resources */,
 				7DD1CCD12A6F670E004F6D8E /* BRPTableViewCell.xib in Resources */,
+				7D6AEEE02A9C93C2008BDEA4 /* WorldClockViewController.xib in Resources */,
+				7D125B822AA5BA7900066D3E /* WorldTableViewCell.xib in Resources */,
 				7DD1CCC52A6E4C4E004F6D8E /* BLTableViewCell.xib in Resources */,
 				7DD4D5312A67CA09003B4D07 /* MainTableViewCell.xib in Resources */,
 				7DD1CCC12A6E2679004F6D8E /* BMTableViewCell.xib in Resources */,
+				7D125B712AA2215A00066D3E /* NoticeViewController.xib in Resources */,
+				7D125B752AA2220600066D3E /* NoticeTableViewCell.xib in Resources */,
 				7DD1CCD92A6FB54E004F6D8E /* NosettingTableViewCell.xib in Resources */,
 				7DD1CCCD2A6E51F9004F6D8E /* MentionViewController.xib in Resources */,
 			);
@@ -571,13 +718,26 @@
 				7D8F52D02A67841E00BC4372 /* MainViewController.swift in Sources */,
 				7DD1CCE02A72454F004F6D8E /* MentionTableViewCell.swift in Sources */,
 				7D8F52DA2A6790F300BC4372 /* BViewController.swift in Sources */,
+				7D6AEEF22A9D8DFB008BDEA4 /* StopWatchViewController.swift in Sources */,
 				7DD1CCC02A6E2679004F6D8E /* BMTableViewCell.swift in Sources */,
 				7DD1CCC82A6E5026004F6D8E /* RepeatViewController.swift in Sources */,
+				7D125B6C2AA21BD200066D3E /* TimerTableViewCell.swift in Sources */,
 				7DD1CCC42A6E4C4E004F6D8E /* BLTableViewCell.swift in Sources */,
+				7D125B8B2AA5FF4300066D3E /* CityTableViewCell.swift in Sources */,
 				7D8F529F2A6783AC00BC4372 /* AppDelegate.swift in Sources */,
+				7D125B702AA2215A00066D3E /* NoticeViewController.swift in Sources */,
+				7D6AEF012A9DDE4D008BDEA4 /* TabbarViewController.swift in Sources */,
+				7D125B7C2AA4BAD000066D3E /* StopWatchCell.swift in Sources */,
 				7DD1CCD82A6FB54E004F6D8E /* NosettingTableViewCell.swift in Sources */,
+				7D125B812AA5BA7900066D3E /* WorldTableViewCell.swift in Sources */,
+				7D6AEEDF2A9C93C2008BDEA4 /* WorldClockViewController.swift in Sources */,
+				7D6AEEFA2A9D91D2008BDEA4 /* TabBarTest.swift in Sources */,
+				7D125B742AA2220600066D3E /* NoticeTableViewCell.swift in Sources */,
+				7D125B882AA5C44A00066D3E /* CustomNavigationBar.swift in Sources */,
 				7D8F52A12A6783AC00BC4372 /* SceneDelegate.swift in Sources */,
+				7D6AEEF72A9D8E0D008BDEA4 /* TimerViewController.swift in Sources */,
 				7DD1CCCC2A6E51F9004F6D8E /* MentionViewController.swift in Sources */,
+				7D125B852AA5BBEB00066D3E /* ChooseCityViewController.swift in Sources */,
 				7DD4D5332A67D66A003B4D07 /* Item.swift in Sources */,
 				7DD4D5302A67CA09003B4D07 /* MainTableViewCell.swift in Sources */,
 				7DBBD7E82A6E1CFB00532A21 /* BTableViewCell.swift in Sources */,

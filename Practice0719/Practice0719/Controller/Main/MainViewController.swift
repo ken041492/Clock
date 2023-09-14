@@ -80,6 +80,7 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         setupNavigation()
         switchStates = Array(repeating: false, count: recieve_clock_array.count)
+        
     }
     
     func setupNavigation() {
@@ -94,6 +95,8 @@ class MainViewController: UIViewController {
         navigationItem.rightBarButtonItem = rightBarButton_add
         navigationController!.navigationBar.prefersLargeTitles = true
         title = "鬧鐘"
+//        additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+
     }
     
     func sorted_clock() -> [ClockStruct]{
@@ -236,6 +239,7 @@ class MainViewController: UIViewController {
         leftBarButton_edit?.tintColor = UIColor.orange
         navigationItem.leftBarButtonItem = leftBarButton_edit
         clickEdit = false
+        
         nextVC.sendMessagToADelegate = self
         nextVC.reloadAView = self
         let navigationController = UINavigationController(rootViewController: nextVC)
